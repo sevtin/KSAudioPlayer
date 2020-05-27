@@ -58,6 +58,7 @@
     _audioFileStream.delegate = self;
 }
 
+/// 开始播放
 - (void)play
 {
     if (self.status == NAudioPlayerStatusStopped) {
@@ -72,6 +73,7 @@
     }
 }
 
+/// 暂停
 - (void)pause
 {
     if (!_audioQueue) {
@@ -88,6 +90,7 @@
     }
 }
 
+/// 停止
 - (void)stop
 {
     if (!_audioQueue) {
@@ -118,6 +121,9 @@
     [self createAudioFileStream];
 }
 
+
+/// seek
+/// @param newTime 时间
 - (void)seekToTime:(double)newTime
 {
     @synchronized (self) {
@@ -222,6 +228,9 @@
 }
 
 #pragma mark private method
+
+/// 设置播放状态
+/// @param status 状态
 - (void)setStatusInternal:(NAudioPlayerStatus)status
 {
     if (_status == status)
@@ -235,6 +244,8 @@
 }
 
 #pragma mark setter && getter
+
+/// 音频总时长
 - (NSTimeInterval)duration
 {
     if (!_audioFileStream) {

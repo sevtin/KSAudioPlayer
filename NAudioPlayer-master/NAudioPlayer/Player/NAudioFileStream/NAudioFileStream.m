@@ -46,6 +46,10 @@
 
 @implementation NAudioFileStream
 
+
+/// 初始化方法，需要传入音频文件路径、音频总长度
+/// @param path 音频文件路径
+/// @param fileSize 音频总长度
 - (instancetype)initWithFilePath:(NSString *)path fileSize:(NSInteger )fileSize
 {
     self = [super init];
@@ -57,6 +61,8 @@
     }return self;
 }
 
+
+/// 打开文件
 - (void)createAudioFileStream
 {
     /*
@@ -68,7 +74,11 @@
      5. outAudioFileStream：AudioFileStreamID实例，需保存供后续使用
      */
     
-    OSStatus status = AudioFileStreamOpen((__bridge void *)self, NAudioFileStreamPropertyListener, NAudioFileStreamPacketCallBack, 0, &_audioFileStreamID);
+    OSStatus status = AudioFileStreamOpen((__bridge void *)self,
+                                          NAudioFileStreamPropertyListener,
+                                          NAudioFileStreamPacketCallBack,
+                                          0,
+                                          &_audioFileStreamID);
     
     if (status != noErr) {
         _audioFileStreamID = NULL;
@@ -80,6 +90,8 @@
     [self _errorForOSStatus:status error:&error];
 }
 
+/// 解析数据
+/// @param data data
 - (void)parseData:(NSData *)data
 {
     /// 解析数据
@@ -133,10 +145,6 @@
     /// 近似seekByteOffset = 数据偏移 + seekToTime对应的近似字节数
     _seekByteOffset = _dataOffset + (newTime / _duration) * (_fileSize - _dataOffset);
     
-//    if (_seekByteOffset > _fileSize - 2 * packetBufferSize){
-//        _seekByteOffset = _fileSize - 2 * packetBufferSize;
-//    }
-        
     if (_packetDuration > 0) {
         /*
          1. 首先需要计算每个packet对应的时长_packetDuration
@@ -160,6 +168,8 @@
 }
 
 #pragma mark - open & close
+
+/// 关闭文件
 - (void)close
 {
     if (!_audioFileStreamID) {

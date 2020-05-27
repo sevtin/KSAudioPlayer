@@ -54,7 +54,11 @@
 @end
 
 @implementation NAudioQueue
+
 /// 音频文件描述信息
+/// 初始化需要传入AudioStreamBasicDescription、AudioFileStreamID
+/// @param audioDesc AudioStreamBasicDescription
+/// @param audioFileStreamID AudioFileStreamID
 - (instancetype)initWithAudioDesc:(AudioStreamBasicDescription)audioDesc
                 audioFileStreamID:(AudioFileStreamID)audioFileStreamID
 {
@@ -87,6 +91,7 @@
 }
 
 /*
+ 创建AudioQueueRef
  参数及返回说明如下：
  1. inFormat：该参数指明了即将播放的音频的数据格式
  2. inCallbackProc：该回调用于当AudioQueue已使用完一个缓冲区时通知用户，用户可以继续填充音频数据
@@ -356,6 +361,7 @@ packetDescriptions:(AudioStreamPacketDescription *)packetDescriptions
     [_lock unlock];
 }
 
+/// 将buffer交给AudioQueue播放
 - (void)enqueueBuffer
 {
     @synchronized(self){

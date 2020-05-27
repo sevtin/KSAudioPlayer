@@ -73,6 +73,7 @@
 		E11B45FA2390A5D600E317DB /* 12309111.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 12309111.mp3; sourceTree = "<group>"; };
 		E11B45FC2390A5DB00E317DB /* 14945107.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 14945107.mp3; sourceTree = "<group>"; };
 		E11B45FE2390A5E200E317DB /* 120125029.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 120125029.mp3; sourceTree = "<group>"; };
+		E62B1E67247E538E00004324 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F3DC8CF42337768800C8AE1D /* NAudioPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NAudioPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3DC8CF72337768800C8AE1D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F3DC8CF82337768800C8AE1D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -280,6 +281,7 @@
 			children = (
 				F3DC8D4823379AA600C8AE1D /* NAudioPlayer.h */,
 				F3DC8D4923379AA600C8AE1D /* NAudioPlayer.m */,
+				E62B1E67247E538E00004324 /* README.md */,
 			);
 			path = NAudioPlayer;
 			sourceTree = "<group>";
