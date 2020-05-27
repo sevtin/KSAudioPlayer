@@ -29,13 +29,16 @@ const NSTimeInterval AUSAudioSessionLatency_LowLatency = 0.0058;
 {
     self = [super init];
     if (self) {
+        /* 采样率 */
         _preferredSampleRate = _currentSampleRate = 44100.0;
         _audioSession = [AVAudioSession sharedInstance];
-    }return self;
+    }
+    return self;
 }
 
 - (void)addRouteChangeListener
 {
+    /* 监听用户切换输出设备 */
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onNotificationAudioRouteChange:)
                                                  name:AVAudioSessionRouteChangeNotification
@@ -51,11 +54,15 @@ const NSTimeInterval AUSAudioSessionLatency_LowLatency = 0.0058;
 
 - (void)adjustOnRouteChange
 {
+    /* 获取当前输出 */
     AVAudioSessionRouteDescription *currentRoute = [[AVAudioSession sharedInstance] currentRoute];
     if (currentRoute) {
+        /* 使用有线麦克风*/
         if ([[AVAudioSession sharedInstance] usingWiredMicrophone]) {
         } else {
+            /* 使用蓝牙 */
             if (![[AVAudioSession sharedInstance] usingBlueTooth]) {
+                /* 切换到扬声器 */
                 [[AVAudioSession sharedInstance] overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:nil];
             }
         }
@@ -68,6 +75,7 @@ const NSTimeInterval AUSAudioSessionLatency_LowLatency = 0.0058;
     _category = category;
     
     NSError *error = nil;
+    /* 切换输出设备 */
     BOOL isSucceed = [_audioSession setCategory:_category error:&error];
     if (!isSucceed) {
         NSLog(@"Could note set category on audio session: %@", error.localizedDescription);
@@ -92,6 +100,7 @@ const NSTimeInterval AUSAudioSessionLatency_LowLatency = 0.0058;
     _active = active;
     
     NSError *error = nil;
+    /* 采样率 */
     BOOL isSucceed = [_audioSession setActive:_preferredSampleRate error:&error];
     if(!isSucceed){
         NSLog(@"Error when setting active state of audio session: %@", error.localizedDescription);

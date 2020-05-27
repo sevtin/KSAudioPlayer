@@ -9,16 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface AVAudioSession (RouteUtils)
 
+/// 使用蓝牙
 - (BOOL)usingBlueTooth;
 
+/// 使用有线麦克风
 - (BOOL)usingWiredMicrophone;
 
+/// 显示耳机警报
 - (BOOL)shouldShowEarphoneAlert;
 
 @end
-
-NS_ASSUME_NONNULL_END

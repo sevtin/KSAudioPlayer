@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 extern const NSTimeInterval AUSAudioSessionLatency_Background;
 extern const NSTimeInterval AUSAudioSessionLatency_Default;
 extern const NSTimeInterval AUSAudioSessionLatency_LowLatency;
@@ -40,5 +38,3 @@ extern const NSTimeInterval AUSAudioSessionLatency_LowLatency;
 - (void)addRouteChangeListener;
 
 @end
-
-NS_ASSUME_NONNULL_END
